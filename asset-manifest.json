@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/hcmd-communication/static/css/main.169f5f99.css",
+    "main.js": "/hcmd-communication/static/js/main.1a8d9f8b.js",
+    "static/js/72.4e8e9d8f.chunk.js": "/hcmd-communication/static/js/72.4e8e9d8f.chunk.js",
+    "static/js/496.6ea6751a.chunk.js": "/hcmd-communication/static/js/496.6ea6751a.chunk.js",
+    "static/js/256.5696ea60.chunk.js": "/hcmd-communication/static/js/256.5696ea60.chunk.js",
+    "static/js/890.ac7cd159.chunk.js": "/hcmd-communication/static/js/890.ac7cd159.chunk.js",
+    "static/css/192.f234c54b.chunk.css": "/hcmd-communication/static/css/192.f234c54b.chunk.css",
+    "static/js/192.eaacf868.chunk.js": "/hcmd-communication/static/js/192.eaacf868.chunk.js",
+    "static/js/512.98b0c07f.chunk.js": "/hcmd-communication/static/js/512.98b0c07f.chunk.js",
+    "static/js/96.845e4e0b.chunk.js": "/hcmd-communication/static/js/96.845e4e0b.chunk.js",
+    "static/js/852.0001bdaf.chunk.js": "/hcmd-communication/static/js/852.0001bdaf.chunk.js",
+    "static/js/118.5ce54e16.chunk.js": "/hcmd-communication/static/js/118.5ce54e16.chunk.js",
+    "static/js/792.911788b4.chunk.js": "/hcmd-communication/static/js/792.911788b4.chunk.js",
+    "static/js/760.60a678d0.chunk.js": "/hcmd-communication/static/js/760.60a678d0.chunk.js",
+    "static/js/536.6128ebf3.chunk.js": "/hcmd-communication/static/js/536.6128ebf3.chunk.js",
+    "static/js/456.09291a16.chunk.js": "/hcmd-communication/static/js/456.09291a16.chunk.js",
+    "static/js/692.b14942d8.chunk.js": "/hcmd-communication/static/js/692.b14942d8.chunk.js",
+    "static/js/232.2143b72b.chunk.js": "/hcmd-communication/static/js/232.2143b72b.chunk.js",
+    "static/js/568.0b20a747.chunk.js": "/hcmd-communication/static/js/568.0b20a747.chunk.js",
+    "static/js/738.b3c7baae.chunk.js": "/hcmd-communication/static/js/738.b3c7baae.chunk.js",
+    "static/media/wa_bg_image.png": "/hcmd-communication/static/media/wa_bg_image.39f53e74f66d348d9f7c.png",
+    "service-worker.js": "/hcmd-communication/service-worker.js",
+    "static/media/logo.png": "/hcmd-communication/static/media/logo.1f151d914a2d099c69dd.png",
+    "static/media/BlocksLoader.svg": "/hcmd-communication/static/media/BlocksLoader.3b92f395796d618bc34f5375bedb23d9.svg",
+    "static/media/LoginLoader.svg": "/hcmd-communication/static/media/LoginLoader.b5bef77ee003b6d0c17fff53eecb69c7.svg",
+    "static/media/task-pending.svg": "/hcmd-communication/static/media/task-pending.492688c27ea5c668371476ebffa66bde.svg",
+    "static/media/messageLoader.svg": "/hcmd-communication/static/media/messageLoader.60ff8c0e66035f2e98bb3d48a23aa4bd.svg",
+    "static/media/task-started.svg": "/hcmd-communication/static/media/task-started.18ade4d1db44d1e924f47c528583d435.svg",
+    "static/media/task-paused.svg": "/hcmd-communication/static/media/task-paused.abd59c5f9500a10e77430bf1d56b8508.svg",
+    "index.html": "/hcmd-communication/index.html",
+    "static/media/task-completed.svg": "/hcmd-communication/static/media/task-completed.8e76d4ca6c91535214f12ddab7139155.svg"
+  },
+  "entrypoints": [
+    "static/css/main.169f5f99.css",
+    "static/js/main.1a8d9f8b.js"
+  ]
+}
