@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import moment from 'moment-timezone';
 import { Button } from 'react-bootstrap';
-import ReactImageVideoLightbox from "react-image-video-lightbox";
+// import ReactImageVideoLightbox from "react-image-video-lightbox";
 
 import { dispatch } from 'redux/store';
 import { format_all, toastPromise } from 'redux/common';
@@ -137,7 +137,7 @@ export const TemplateTaskDetails = ({ task, onCloseHandler }) => {
 
     if (isImageShow)
         return (<div className="modal modal-lg-fullscreen fade show d-block task-image-gallery" id="imageGallery" tabIndex={-1} role="dialog" aria-labelledby="dropZoneLabel" aria-modal="true">
-            <ReactImageVideoLightbox
+            {/* <ReactImageVideoLightbox
                 data={taskDetails.templateAttachments
                     .filter((item) => ["image", "video"].includes(item.mediaType.split("/").shift()))
                     .map((item) => {
@@ -151,7 +151,7 @@ export const TemplateTaskDetails = ({ task, onCloseHandler }) => {
                     .findIndex((item) => item.id === imageId)}
                 showResourceCount={true}
                 onCloseCallback={onCloseImageHandler}
-            />
+            /> */}
         </div>)
 
     try {

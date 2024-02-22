@@ -1,5 +1,5 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
-import ReactImageVideoLightbox from "react-image-video-lightbox";
+// import ReactImageVideoLightbox from "react-image-video-lightbox";
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { changeModel } from 'redux/actions/modelAction';
 import { CHAT_CONST } from 'redux/constants/chatConstants';
@@ -80,7 +80,7 @@ export default function ImageGalleryZone() {
                         </button>
                     </div>
                     <div className="modal-body image-video-gallery position-relative">
-                        <ReactImageVideoLightbox
+                        {/* <ReactImageVideoLightbox
                             data={mediaList}
                             startIndex={
                                 !!taskAttachments?.length ? 0 :
@@ -91,7 +91,7 @@ export default function ImageGalleryZone() {
                             onNavigationCallback={(currentIndex) => {
                                 onChangeCurrFile(currentIndex)
                             }}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>

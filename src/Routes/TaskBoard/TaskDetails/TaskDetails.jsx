@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import ReactImageVideoLightbox from "react-image-video-lightbox";
+// import ReactImageVideoLightbox from "react-image-video-lightbox";
 import moment from "moment-timezone";
 import DatePicker from "react-datepicker";
 import { useSelector } from "react-redux";
@@ -323,7 +323,7 @@ export default function TaskDetails({ onClose, task }) {
 
 	if (isImageShow)
 		return (<div className="modal modal-lg-fullscreen fade show d-block task-image-gallery" id="imageGallery" tabIndex={-1} role="dialog" aria-labelledby="dropZoneLabel" aria-modal="true">
-			<ReactImageVideoLightbox
+			{/* <ReactImageVideoLightbox
 				data={taskDetails.attachments
 					.filter((item) => ["image", "video"].includes(item.mediaType.split("/").shift()))
 					.map((item) => {
@@ -347,7 +347,7 @@ export default function TaskDetails({ onClose, task }) {
 					.findIndex((item) => item.id === imageId)}
 				showResourceCount={true}
 				onCloseCallback={onCloseImageHandler}
-			/>
+			/> */}
 		</div>);
 
 	if (taskDetails) {

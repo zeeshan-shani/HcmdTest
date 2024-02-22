@@ -1,6 +1,6 @@
 import React, { lazy, useState } from 'react'
 import classes from "Routes/KnowledgeBase/Issues.module.css";
-import ReactImageVideoLightbox from "react-image-video-lightbox";
+// import ReactImageVideoLightbox from "react-image-video-lightbox";
 import { SocketEmiter } from 'utils/wssConnection/Socket';
 import { DeleteIssuesAttachment, ReqUpdateIssue } from 'redux/actions/IssuesAction';
 import { onUploadImage, uploadToS3 } from 'utils/AWS_S3/s3Connection';
@@ -93,7 +93,7 @@ export const AssignedSolution = ({ requestData }) => {
 
     if (isImageShow)
         return (<div className="modal modal-lg-fullscreen fade show d-block task-image-gallery" id="imageGallery" tabIndex={-1} role="dialog" aria-labelledby="dropZoneLabel" aria-modal="true">
-            <ReactImageVideoLightbox
+            {/* <ReactImageVideoLightbox
                 data={requestData.issuesAttachments
                     .filter((item) => ["image", "video"].includes(item.mediaType.split("/").shift()))
                     .map((item) => {
@@ -117,7 +117,7 @@ export const AssignedSolution = ({ requestData }) => {
                     .findIndex((item) => item.id === imageId)}
                 showResourceCount={true}
                 onCloseCallback={onCloseImageHandler}
-            />
+            /> */}
         </div>)
 
     return (

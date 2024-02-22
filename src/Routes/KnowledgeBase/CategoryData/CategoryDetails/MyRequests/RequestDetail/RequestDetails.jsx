@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, useCallback } from 'react'
 import moment from 'moment-timezone';
-import ReactImageVideoLightbox from "react-image-video-lightbox";
+// import ReactImageVideoLightbox from "react-image-video-lightbox";
 import { CONST } from 'utils/constants';
 import { Button } from 'react-bootstrap';
 import { dispatch } from 'redux/store';
@@ -126,7 +126,7 @@ export const RequestDetails = () => {
 
     if (isImageShow)
         return (<div className="modal modal-lg-fullscreen fade show d-block task-image-gallery" id="imageGallery" tabIndex={-1} role="dialog" aria-labelledby="dropZoneLabel" aria-modal="true">
-            <ReactImageVideoLightbox
+            {/* <ReactImageVideoLightbox
                 data={requestData.issuesAttachments
                     .filter((item) => ["image", "video"].includes(item.mediaType.split("/").shift()))
                     .map((item) => {
@@ -150,7 +150,7 @@ export const RequestDetails = () => {
                     .findIndex((item) => item.id === imageId)}
                 showResourceCount={true}
                 onCloseCallback={onCloseImageHandler}
-            />
+            /> */}
         </div>)
 
     if (requestData) {
