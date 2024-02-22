@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkHcmdTest=self.webpackChunkHcmdTest||[]).push([[192],{75192:(e,s,t)=>{t.r(s),t.d(s,{default:()=>r});var f=t(99584),u=t(4772),c=t(66974),n=t(97884);function r(e){const s=(0,f.useRef)();return(0,f.useEffect)((()=>{new u.qS({...e,data:c,ref:s})}),[e.perLine]),(0,n.jsx)("div",{ref:s})}}}]);
