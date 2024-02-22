@@ -1,0 +1,130 @@
+.react-flow__handle {
+    display: none;
+}
+
+.form-canvas.dndflow .reactflow-wrapper {
+    background-color: #fff;
+}
+
+.react-flow__panel.react-flow__attribution {
+    display: none;
+}
+
+.hcmd-form .react-flow__pane {
+    overflow: scroll;
+    cursor: default;
+}
+
+.dndflow {
+    flex-direction: column;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.dndflow aside {
+    border-right: 1px solid #eee;
+    padding: 15px 10px;
+    font-size: 12px;
+    background: #fcfcfc;
+}
+
+.dndflow aside .description {
+    margin-bottom: 10px;
+}
+
+.dndflow .dndnode {
+    height: 20px;
+    padding: 4px;
+    border: 1px solid #1a192b;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+}
+
+.dndflow .dndnode.input {
+    border-color: #0041d0;
+}
+
+.dndflow .dndnode.output {
+    border-color: #ff0072;
+}
+
+.dndflow .reactflow-wrapper {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.dndflow .selectall {
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .dndflow {
+        flex-direction: row;
+    }
+
+    .dndflow aside {
+        width: 20%;
+        max-width: 250px;
+    }
+}
+
+.cstm-field-edit-border {
+    border: 2px solid transparent;
+}
+
+.cstm-field-edit-border.hovered:hover {
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.cstm-form-input-field {
+    position: relative;
+}
+
+.cstm-form-input-field .action-controller {
+    position: absolute;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-end;
+    line-height: 1;
+    right: 0;
+    bottom: 110%;
+}
+
+.cstm-form-input-field .component-btn-group:hover {
+    visibility: visible !important;
+}
+
+.cstm-form-input-field .component-btn-group {
+    display: flex;
+    flex-direction: row;
+    margin-top: -2px;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+}
+
+.cstm-form-input-field .component-btn-group .component-settings-button {
+    border-radius: 0;
+    font-size: 10px;
+    height: 18px;
+    line-height: 1.2em;
+    padding: 2px;
+    width: 18px;
+}
+
+.cstm-form-input-field .component-btn-group .component-settings-button {
+    box-shadow: 0 0 10px 1px rgba(48, 113, 169, .5);
+    float: right;
+    margin: 4px 4px 0 0;
+    z-index: 1001;
+}
+
+.form-renderer .nodrag {
+    cursor: default;
+}

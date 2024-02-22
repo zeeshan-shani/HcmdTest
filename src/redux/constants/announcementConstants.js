@@ -1,0 +1,4 @@
+export const ANNOUNCEMENT_CONST = {
+    SET_ANNOUNCEMENT: 'SET_ANNOUNCEMENT',
+  };
+  

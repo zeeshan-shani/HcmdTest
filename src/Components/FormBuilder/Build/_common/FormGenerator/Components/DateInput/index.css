@@ -1,0 +1,10 @@
+.dateInputForMUI {
+  padding: 14px;
+  width: 100%;
+  border: 0.3px solid #c4c4c4;
+  border-radius: 4px;
+}
+
+.dateInputForMUI:hover {
+  border: 0.3px solid;
+}

@@ -1,0 +1,71 @@
+@media only screen and (min-width: 1200px) {
+	.page-layout {
+		height: 100vh;
+		overflow: auto;
+	}
+}
+
+@media only screen and (max-width: 1199px) {
+	.page-layout {
+		padding-bottom: 60px;
+	}
+}
+
+.input-group {
+	border-radius: 4px;
+}
+
+.issues-search-category>.form-control {
+	background-color: transparent;
+	border: none;
+}
+
+.issues-search-category {
+	height: 20%;
+}
+
+.new-issue-request {
+	border-radius: 6px;
+}
+
+.add-task-block {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	padding: 10px 10px;
+	cursor: pointer;
+}
+
+.add-board-task:hover {
+	transform: scale(1.08);
+}
+
+.add-task-block svg {
+	margin-right: 10px;
+}
+
+.add-card-input-block {
+	text-align: center;
+	padding: 8px;
+}
+
+.add-card-input-block .add-card-input {
+	width: 100%;
+	/* resize: none; */
+	/* background-color: #383f44; */
+	border-radius: 3px;
+	/* border: 0; */
+	border: 1px solid #ced4da;
+	font-size: 16px;
+	padding: 10px;
+}
+
+.add-card-input-block .add-card-input:focus {
+	outline: 0;
+}
+
+.add-card-input-block .action {
+	display: flex;
+	align-items: center;
+}

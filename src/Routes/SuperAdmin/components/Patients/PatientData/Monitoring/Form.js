@@ -1,0 +1,213 @@
+const getForm = () => {
+    return [
+        {
+            "name": "bllodPresureWithDate",
+            "label": "Blood presure with date",
+            "valueKey": "bllodPresureWithDate",
+            "value": "",
+            "type": "text",
+            "placeholder": "write the blood presure with date",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "trackPhysicalTherapyReports",
+            "label": "Track physical therapy reports",
+            "valueKey": "trackPhysicalTherapyReports",
+            "value": "",
+            "type": "text",
+            "placeholder": "write report on tracking",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "heartRateWithDate",
+            "label": "Heart rate with date",
+            "valueKey": "heartRateWithDate",
+            "value": "",
+            "type": "text",
+            "placeholder": "write the heart rate with date",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "trackSpeechOccupationalTherapy",
+            "label": "Track speech therapy and occipational therapy reports",
+            "valueKey": "trackSpeechOccupationalTherapy",
+            "value": "",
+            "type": "text",
+            "placeholder": "write report on tracking",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "respiratoryRateWithDate",
+            "label": "Respiratory rate with date",
+            "valueKey": "respiratoryRateWithDate",
+            "value": "",
+            "type": "text",
+            "placeholder": "write respiratory rate with date",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "trackSymptomsWithDetails",
+            "label": "Track symptoms with details for each symptom",
+            "valueKey": "trackSymptomsWithDetails",
+            "value": "",
+            "type": "text",
+            "placeholder": "Symptoms tracking",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "tempratureWithDate",
+            "label": "Temprature with date",
+            "valueKey": "tempratureWithDate",
+            "value": "",
+            "type": "text",
+            "placeholder": "Temprature with date",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "InformationOfWound",
+            "label": "Would care location, stage, percent, slope, and size with transition over time",
+            "valueKey": "InformationOfWound",
+            "value": "",
+            "type": "text",
+            "placeholder": "Fill required information of wound",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "pulseOximetryWithDate",
+            "label": "Pulse oximetry with date",
+            "valueKey": "pulseOximetryWithDate",
+            "value": "",
+            "type": "text",
+            "placeholder": "Write pulse oximetry with date",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "TherapyTransition",
+            "label": "Physical therapy transition over time",
+            "valueKey": "TherapyTransition",
+            "value": "",
+            "type": "text",
+            "placeholder": "Therapy Transition",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "amountOfOxigenPatient",
+            "label": "Amount of Oxygen patient is on",
+            "valueKey": "amountOfOxigenPatient",
+            "value": "",
+            "type": "text",
+            "placeholder": "Amount of oxigen patient",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "labsAndRadiologyResults",
+            "label": "Labs and radiology results",
+            "valueKey": "labsAndRadiologyResults",
+            "value": "",
+            "type": "text",
+            "placeholder": "Labs and radiology results",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        {
+            "name": "DMEtrack",
+            "label": "Track any DME the patient has been using with dates",
+            "valueKey": "DMEtrack",
+            "value": "",
+            "type": "text",
+            "placeholder": "DME track",
+            "validationType": "string",
+            "isEditable": true,
+            "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" }
+        },
+        // {
+        //     "name": "satellitePictureOfResidence",
+        //     "label": "Satellite picture of residence",
+        //     "valueKey": "satellitePictureOfResidence",
+        //     "value": "",
+        //     "type": "select",
+        //     "placeholder": "Satellite picture of residence",
+        //     "validationType": "array",
+        //     "validations": [],
+        //     "isEditable": true,
+        //     "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" },
+        //     "pluginConfiguration": {}
+        // },
+        // {
+        //     "name": "shortVideoFromEntranceToPatientRoom",
+        //     "label": "Short video from entrance to patient's room",
+        //     "valueKey": "shortVideoFromEntranceToPatientRoom",
+        //     "value": "",
+        //     "type": "select",
+        //     "placeholder": "Upload the video",
+        //     "validationType": "array",
+        //     "validations": [],
+        //     "isEditable": true,
+        //     "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" },
+        //     "pluginConfiguration": {}
+        // },
+        // {
+        //     "name": "VideoClipsForPatientCareIssues",
+        //     "label": "Video clips for patient care issues",
+        //     "valueKey": "VideoClipsForPatientCareIssues",
+        //     "value": "",
+        //     "type": "select",
+        //     "placeholder": "Upload the video",
+        //     "validationType": "array",
+        //     "validations": [],
+        //     "isEditable": true,
+        //     "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" },
+        //     "pluginConfiguration": {}
+        // },
+        // {
+        //     "name": "VideoOfDiscussionOfCodeStatus",
+        //     "label": "Video of discussion of code status",
+        //     "valueKey": "VideoOfDiscussionOfCodeStatus",
+        //     "value": "",
+        //     "type": "select",
+        //     "placeholder": "Upload the video",
+        //     "validationType": "array",
+        //     "validations": [],
+        //     "isEditable": true,
+        //     "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" },
+        //     "pluginConfiguration": {}
+        // },
+        // {
+        //     "name": "MedicalStatusAndQualifications",
+        //     "label": "Medical status and qualifications",
+        //     "valueKey": "MedicalStatusAndQualifications",
+        //     "value": "",
+        //     "type": "select",
+        //     "placeholder": "Medical status and qualifications",
+        //     "validationType": "array",
+        //     "validations": [],
+        //     "isEditable": true,
+        //     "classes": { wrapper: "col-12 col-md-6", label: "", field: "", error: "" },
+        //     "pluginConfiguration": {}
+        // },
+    ]
+}
+export default getForm;
