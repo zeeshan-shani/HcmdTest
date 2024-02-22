@@ -1,8 +1,7 @@
 {
-  "name": "HcmdTest",
+  "name": "hcmd-communication",
   "version": "3.0.0",
   "private": true,
-  "homepage": "https://zeeshan-shani.github.io/HcmdTest",
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^6.0.0",
     "@emoji-mart/data": "^1.1.2",
@@ -50,6 +49,7 @@
     "react-hot-toast": "^2.4.1",
     "react-idle-timer": "^5.6.2",
     "react-image-gallery": "^1.2.11",
+    "react-image-video-lightbox": "^3.0.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-mentions": "^4.4.7",
     "react-pdf": "^5.7.2",
@@ -74,9 +74,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "build": "react-scripts build && compress-cra",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -99,7 +97,6 @@
     ]
   },
   "devDependencies": {
-    "compress-create-react-app": "^1.4.2",
-    "gh-pages": "^6.1.1"
+    "compress-create-react-app": "^1.4.2"
   }
 }
