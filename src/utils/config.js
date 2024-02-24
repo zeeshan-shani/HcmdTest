@@ -47,7 +47,7 @@ const getServerConfiguration = (version) => {
 	const development = {
 		version: CONST.RUN_MODE.DEVELOPMENT,
 		FURL: "http://192.168.100.133:3000",
-		URL: "https://52.35.148.228:443	", // API endpoint
+		URL: "http://52.35.148.228:443	", // API endpoint
 		CLOUD_IMAGE: "https://dbvegu4yzhf6f.cloudfront.net",
 		RUNNING: "LOCAL"
 	}
