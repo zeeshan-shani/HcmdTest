@@ -398,6 +398,7 @@ export const SOCKET = {
 		MAKE_GROUP_ADMIN: "req-make-group-admin",
 		REMOVE_GROUP_ADMIN: "req-remove-group-admin",
 		ADD_TO_TASK: "req-create-task",
+		PIN_MESSAGE:"pin_message",
 		// chat sockets ends here
 
 		// Tasks sockets starts from here

@@ -55,6 +55,7 @@ const AnnouncementComponent = () => {
     setOpenModal(true);
   };
   useEffect(() => {
+    console.log("----====??>>", storedAnnouncements);
     dispatch({ type: CHAT_CONST.DELETE_ACTIVE_CHAT });
   }, []);
   const handleCloseModal = () => {

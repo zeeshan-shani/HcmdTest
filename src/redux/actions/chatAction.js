@@ -442,6 +442,42 @@ export const removeImportantMessage = async (message, type) => {
   }
 };
 
+// Add Pin to Message
+export const addPinToMessage = async (message, selectedValue) => {
+  try {
+    // Dispatch action to update Redux state
+    dispatch({
+      type: CHAT_CONST.ADD_PIN_TO_MESSAGE_SUCCESS,
+      payload: { message },
+    });
+    // Emit a socket request to add pin to the message
+    SocketEmiter(
+      "add_pin_to_message",
+      { message, selectedValue },
+      (response) => {
+        // Handle the response from the server
+        console.log(response);
+      }
+    );
+  } catch (error) {
+    showError(error?.response?.data?.message);
+    console.error(error);
+  }
+};
+// Remove Pin from Message
+export const removePinFromMessage = async (message) => {
+  try {
+    // Dispatch action to update Redux state
+    dispatch({
+      type: CHAT_CONST.REMOVE_PIN_FROM_MESSAGE_SUCCESS,
+      payload: { message },
+    });
+  } catch (error) {
+    showError(error?.response?.data?.message);
+    console.error(error);
+  }
+};
+
 // Add as Watch Message
 export const addWatchMessage = async (message, type) => {
   try {
@@ -516,70 +552,111 @@ export const checkNotifications = async (dashboardList, chatList, userId) => {
 };
 
 export const setReplyPrivatelyMessage = async (item, user, navigate) => {
-	const res = await CreatePrivateChat(item.sendBy, user.id);
-	if (res?.status === 1) {
-		const payload = await generatePayload({
-			// rest: { includeChatUserDetails: false },
-			options: { "populate": ["lastMessage", "chatUser"] },
-			isCount: true,
-		});
-		loadUserChatList(payload);
-		notifyUsers(res.data.createdBy, res.data.id, res.data.users, res.data.type);
-		setUserHandler({ chat: res.data, activeChatId: item.chatId, userId: user.id, navigate });
-		ConnectInNewChat(res.data, user.id);
-		dispatch({ type: CHAT_CONST.SET_CHAT_QUOTE_MSG, payload: item });
-	} else if (res?.status === 2) {
-		setUserHandler({ chat: res.data, activeChatId: item.chatId, userId: user.id, navigate });
-		dispatch({ type: CHAT_CONST.SET_CHAT_QUOTE_MSG, payload: item });
-	}
+  const res = await CreatePrivateChat(item.sendBy, user.id);
+  if (res?.status === 1) {
+    const payload = await generatePayload({
+      // rest: { includeChatUserDetails: false },
+      options: { populate: ["lastMessage", "chatUser"] },
+      isCount: true,
+    });
+    loadUserChatList(payload);
+    notifyUsers(res.data.createdBy, res.data.id, res.data.users, res.data.type);
+    setUserHandler({
+      chat: res.data,
+      activeChatId: item.chatId,
+      userId: user.id,
+      navigate,
+    });
+    ConnectInNewChat(res.data, user.id);
+    dispatch({ type: CHAT_CONST.SET_CHAT_QUOTE_MSG, payload: item });
+  } else if (res?.status === 2) {
+    setUserHandler({
+      chat: res.data,
+      activeChatId: item.chatId,
+      userId: user.id,
+      navigate,
+    });
+    dispatch({ type: CHAT_CONST.SET_CHAT_QUOTE_MSG, payload: item });
+  }
 };
 
-export const moveChatandQMessage = async ({ chatList = [], activeChat = { id: -1 }, user, qMessage, navigate }) => {
-	try {
-		if (messageRef[qMessage.id]) return ScrolltoOrigin(qMessage, 25);
-		let itemChat = qMessage?.chatDetails;
-		itemChat = itemChat || chatList.find((chat) => chat.id === qMessage?.chatId);
-		if (!itemChat) {
-			const { data } = await chatService.getChatData({ payload: { id: qMessage.chatId } });
-			itemChat = data;
-		}
-		if (qMessage && itemChat) {
-			// const [lastMessage] = itemChat.messages;
-			await toastPromise({
-				func: async (myResolve, myReject) => {
-					try {
-						// const resLength = await getLengthFromLastMessage({
-						// 	chatId: qMessage?.chatId,
-						// 	rquestedMessageId: qMessage.id,
-						// 	currentMessageId: lastMessage.id,
-						// });
-						// setUserHandler({ chat: itemChat, activeChatId: activeChat.id, userId: user.id, messageAt: resLength.data, navigate });
-						setUserHandler({ chat: itemChat, activeChatId: activeChat.id, userId: user.id, messageAt: qMessage.id, navigate });
-						// if (resLength > 100) {
-						const res = await getMessages2({ messageId: qMessage.id, pagitionFlow: "DOWN", includeMessage: true });
-						dispatch({ type: CHAT_CONST.GET_MESSAGES_SUCCESS, payload: { data: { count: res.data.count, rows: res.data.rows, down: true } } });
-						// }
-						// else {
-						// 	const res = await getMessages({ limit: resLength.data > CONST.MESSAGE_GET_LIMIT ? resLength.data : CONST.MESSAGE_GET_LIMIT });
-						// 	dispatch({ type: CHAT_CONST.GET_MESSAGES_SUCCESS, payload: { data: { count: res.data.count, rows: res.data.rows } } });
-						// }
-						dispatch({ type: CHAT_CONST.TOTAL_COUNT_DOWN, payload: res.data.count - CONST.MESSAGE_GET_LIMIT });
-						dispatch({ type: "SET_MESSAGEAT", payload: null });
-						ScrolltoOrigin(qMessage);
-						myResolve("OK");
-					} catch (error) {
-						myReject("Error");
-					}
-				},
-				loading: "Requesting for message...",
-				success: <b>Successfully get message</b>,
-				error: <b>Could not get message.</b>,
-				options: { id: "get-reply-message" }
-			})
-		}
-	} catch (error) {
-		console.error(error);
-	}
+export const moveChatandQMessage = async ({
+  chatList = [],
+  activeChat = { id: -1 },
+  user,
+  qMessage,
+  navigate,
+}) => {
+  try {
+    if (messageRef[qMessage.id]) return ScrolltoOrigin(qMessage, 25);
+    let itemChat = qMessage?.chatDetails;
+    itemChat =
+      itemChat || chatList.find((chat) => chat.id === qMessage?.chatId);
+    if (!itemChat) {
+      const { data } = await chatService.getChatData({
+        payload: { id: qMessage.chatId },
+      });
+      itemChat = data;
+    }
+    if (qMessage && itemChat) {
+      // const [lastMessage] = itemChat.messages;
+      await toastPromise({
+        func: async (myResolve, myReject) => {
+          try {
+            // const resLength = await getLengthFromLastMessage({
+            // 	chatId: qMessage?.chatId,
+            // 	rquestedMessageId: qMessage.id,
+            // 	currentMessageId: lastMessage.id,
+            // });
+            // setUserHandler({ chat: itemChat, activeChatId: activeChat.id, userId: user.id, messageAt: resLength.data, navigate });
+            setUserHandler({
+              chat: itemChat,
+              activeChatId: activeChat.id,
+              userId: user.id,
+              messageAt: qMessage.id,
+              navigate,
+            });
+            // if (resLength > 100) {
+            const res = await getMessages2({
+              messageId: qMessage.id,
+              pagitionFlow: "DOWN",
+              includeMessage: true,
+            });
+            dispatch({
+              type: CHAT_CONST.GET_MESSAGES_SUCCESS,
+              payload: {
+                data: {
+                  count: res.data.count,
+                  rows: res.data.rows,
+                  down: true,
+                },
+              },
+            });
+            // }
+            // else {
+            // 	const res = await getMessages({ limit: resLength.data > CONST.MESSAGE_GET_LIMIT ? resLength.data : CONST.MESSAGE_GET_LIMIT });
+            // 	dispatch({ type: CHAT_CONST.GET_MESSAGES_SUCCESS, payload: { data: { count: res.data.count, rows: res.data.rows } } });
+            // }
+            dispatch({
+              type: CHAT_CONST.TOTAL_COUNT_DOWN,
+              payload: res.data.count - CONST.MESSAGE_GET_LIMIT,
+            });
+            dispatch({ type: "SET_MESSAGEAT", payload: null });
+            ScrolltoOrigin(qMessage);
+            myResolve("OK");
+          } catch (error) {
+            myReject("Error");
+          }
+        },
+        loading: "Requesting for message...",
+        success: <b>Successfully get message</b>,
+        error: <b>Could not get message.</b>,
+        options: { id: "get-reply-message" },
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getPatientList = async (payload = {}) => {
@@ -663,16 +740,23 @@ export const checkAudios = () => {
 };
 
 export const changeChatBackground = (payload) =>
-	SocketEmiter(SOCKET.REQUEST.UPDATE_CHAT_BACKGROUND, payload, (data) => {
-		dispatch({ type: CHAT_CONST.UPDATE_CHAT_BACKGROUND, payload: data });
-	})
+  SocketEmiter(SOCKET.REQUEST.UPDATE_CHAT_BACKGROUND, payload, (data) => {
+    dispatch({ type: CHAT_CONST.UPDATE_CHAT_BACKGROUND, payload: data });
+  });
 
 export const getChatName = ({ chat, userId }) => {
-	let chatname = chat?.name || 'Unknown group'
-	if (chat && chat.type === CONST.CHAT_TYPE.PRIVATE) {
-		const privUsrId = chat.users.find(item => item !== userId) || ((chat.users[0] === chat.users[1]) ? chat.chatusers[0].user.id : null);
-		const privateUser = chat?.chatusers?.find(item => item.userId === privUsrId)?.user;
-		chatname = (privateUser?.id === userId ? `${privateUser?.name} (You)` : privateUser?.name) || 'Unknown user';
-	}
-	return chatname;
-}
+  let chatname = chat?.name || "Unknown group";
+  if (chat && chat.type === CONST.CHAT_TYPE.PRIVATE) {
+    const privUsrId =
+      chat.users.find((item) => item !== userId) ||
+      (chat.users[0] === chat.users[1] ? chat.chatusers[0].user.id : null);
+    const privateUser = chat?.chatusers?.find(
+      (item) => item.userId === privUsrId
+    )?.user;
+    chatname =
+      (privateUser?.id === userId
+        ? `${privateUser?.name} (You)`
+        : privateUser?.name) || "Unknown user";
+  }
+  return chatname;
+};
