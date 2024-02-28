@@ -1,6 +1,6 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { changeModel, changeTask } from "redux/actions/modelAction";
-import { SocketEmiter } from "utils/wssConnection/Socket";
+import { SocketEmiter, SocketListener } from "utils/wssConnection/Socket";
 import { handleDownload, toastPromise } from "redux/common";
 import { CONST, SOCKET } from "utils/constants";
 import { CHAT_CONST } from "redux/constants/chatConstants";
@@ -51,7 +51,6 @@ import { FormControlLabel, Radio, RadioGroup, Stack } from "@mui/material";
 export const MessageDropDown = ({ item, SetUserChatState, isGroupAdmin }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
-  const messages = useSelector(state => state.chat.messages.data.rows);
   const { activeChat } = useSelector((state) => state.chat);
   const [reminder, setReminder] = useState();
   const timeLimit = ["24 hours", "7 days", "30 days"];
@@ -59,7 +58,6 @@ export const MessageDropDown = ({ item, SetUserChatState, isGroupAdmin }) => {
   const [selectedValue, setSelectedValue] = React.useState(timeLimit[0]);
 
   const handleClose = (value) => {
-    console.log("messages: ",messages)
     setOpen(false);
     if (value !== "addAccount") {
       setSelectedValue(value);
@@ -67,6 +65,22 @@ export const MessageDropDown = ({ item, SetUserChatState, isGroupAdmin }) => {
       addPinToMessage(item, selectedValue);
     }
   };
+  useEffect(() => {
+    SocketListener("pin_added_to_message", (data) => {
+      // Dispatch action to update Redux state
+      if (data.data.isPinned) {
+        dispatch({
+          type: CHAT_CONST.ADD_PIN_TO_MESSAGE_SUCCESS,
+          payload: { message: data.data },
+        });
+        return;
+      }
+      dispatch({
+        type: CHAT_CONST.REMOVE_PIN_FROM_MESSAGE_SUCCESS,
+        payload: { message: data.data },
+      });
+    });
+  }, [item]);
 
   const AddToTaskHandler = useCallback(() => {
     const body = {
@@ -173,6 +187,22 @@ export const MessageDropDown = ({ item, SetUserChatState, isGroupAdmin }) => {
 
   const options = useMemo(
     () => [
+      {
+        IconComponent: PinFill,
+        name: "Pin",
+        id: "pin-message",
+        enabled: activeChat.id !== -1 && !item.isPinned,
+        className: "text-color",
+        onTrigger: AddPinToMessageHandler,
+      },
+      {
+        IconComponent: Pin,
+        name: "Remove Pin",
+        id: "unpin-message",
+        enabled: activeChat.id !== -1 && item.isPinned,
+        className: "text-color",
+        onTrigger: RemovePinFromMessageHandler,
+      },
       {
         id: "add-to-task",
         enabled: activeChat.id !== -1 && !item.mediaType && item.isMessage,
@@ -295,22 +325,6 @@ export const MessageDropDown = ({ item, SetUserChatState, isGroupAdmin }) => {
         className: "text-danger",
         name: "Delete",
         onTrigger: onClickDeleteMsg,
-      },
-      {
-        IconComponent: PinFill,
-        name: "Pin",
-        id: "pin-message",
-        enabled: activeChat.id !== -1 && !item.isPinned,
-        className: "text-color",
-        onTrigger: AddPinToMessageHandler,
-      },
-      {
-        IconComponent: Pin,
-        name: "Remove Pin",
-        id: "unpin-message",
-        enabled: activeChat.id !== -1 && !item.isPinned,
-        className: "text-color",
-        onTrigger: RemovePinFromMessageHandler,
       },
     ],
     [

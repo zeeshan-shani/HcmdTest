@@ -81,23 +81,7 @@ class ChatService extends PlaceholderApiProvider {
     data = preparePayload({ data, payload, encrypted, configuration, headers });
     return this.api.post("/grouplist", data, configuration);
   }
-  async announce({
-    payload = {},
-    config = { headers: {} },
-    headers = {},
-    encrypted = true,
-  }) {
-    let data = payload;
-    let configuration = { ...config };
-    data = preparePayload({ data, payload, encrypted, configuration, headers });
-    return this.api.post("/announcement", data, configuration);
-  }
-  async getAnnouncementList({ payload = {}, config = { headers: {} }, headers = {}, encrypted = true }) {
-    let data = payload;
-    let configuration = { ...config };
-    data = preparePayload({ data, payload, encrypted, configuration, headers });
-    return this.api.post('/announcement/list', { params: data, ...configuration });
-}
+  
 }
 
 const chatService = new ChatService("/chat");

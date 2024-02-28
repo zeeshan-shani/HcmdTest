@@ -153,7 +153,7 @@ export default function MessageFooter({
                   <StarFill />
                 </span>
               )}
-              {item?.pinned && (
+              {item?.isPinned && (
                 <span className="message-pin-icon">
                   <PinFill />
                 </span>

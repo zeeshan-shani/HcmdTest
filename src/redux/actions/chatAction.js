@@ -87,8 +87,6 @@ export const loadAnnouncementList = () => {
         payload,
         config,
       });
-      // console.log(data);
-
       dispatch({
         type: CHAT_CONST.LOAD_ANNOUNCEMENT_LIST_SUCCESS,
         payload: data,
@@ -456,7 +454,6 @@ export const addPinToMessage = async (message, selectedValue) => {
       { message, selectedValue },
       (response) => {
         // Handle the response from the server
-        console.log(response);
       }
     );
   } catch (error) {
@@ -471,6 +468,10 @@ export const removePinFromMessage = async (message) => {
     dispatch({
       type: CHAT_CONST.REMOVE_PIN_FROM_MESSAGE_SUCCESS,
       payload: { message },
+    });
+    // Emit a socket request to add pin to the message
+    SocketEmiter("add_pin_to_message", { message }, (response) => {
+      // Handle the response from the server
     });
   } catch (error) {
     showError(error?.response?.data?.message);

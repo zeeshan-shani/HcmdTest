@@ -996,13 +996,10 @@ export const chatReducer = (state = initialState, action) => {
 		case CHAT_CONST.ADD_PIN_TO_MESSAGE_SUCCESS:
 			// Unpin any previously pinned message
 			let updatedMessagesAdd = state.messages.data.rows.map((item) => {
-				if (item.id !== action.payload.message.id && item.pinned) {
-					item.pinned = false;
-					console.log("1stitem.pinned",item.pinned);
+				if (item.id !== action.payload.message.id && item.isPinned) {
+					item.isPinned = false;
 				} else if (item.id === action.payload.message.id) {
-					item.pinned = true;
-					console.log("1stitem.pinned",item.pinned);
-
+					item.isPinned = true;
 				}
 				return item;
 			});
@@ -1021,7 +1018,7 @@ export const chatReducer = (state = initialState, action) => {
       case CHAT_CONST.REMOVE_PIN_FROM_MESSAGE_SUCCESS:
         let updatedMessagesRemove = state.messages.data.rows.map((item) => {
           if (item.id === action.payload.message.id) {
-            item.pinned = false;
+            item.isPinned = false;
           }
           return item;
         });
