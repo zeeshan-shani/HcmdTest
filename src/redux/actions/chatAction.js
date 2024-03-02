@@ -29,7 +29,6 @@ import patientService from "services/APIs/services/patientService";
 import messageService from "services/APIs/services/messageService";
 import importantMessageService from "services/APIs/services/importantMessageService";
 import watchlistService from "services/APIs/services/watchlistService";
-
 export let cancelToken = {
   announceToChat: null,
 };
@@ -450,7 +449,7 @@ export const addPinToMessage = async (message, selectedValue) => {
     });
     // Emit a socket request to add pin to the message
     SocketEmiter(
-      "add_pin_to_message",
+      SOCKET.REQUEST.ADD_PIN_MESSAGE,
       { message, selectedValue },
       (response) => {
         // Handle the response from the server
@@ -470,7 +469,7 @@ export const removePinFromMessage = async (message) => {
       payload: { message },
     });
     // Emit a socket request to add pin to the message
-    SocketEmiter("add_pin_to_message", { message }, (response) => {
+    SocketEmiter(SOCKET.REQUEST.ADD_PIN_MESSAGE, { message }, (response) => {
       // Handle the response from the server
     });
   } catch (error) {

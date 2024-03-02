@@ -58,15 +58,22 @@ export const MessageDropDown = ({ item, SetUserChatState, isGroupAdmin }) => {
   const [selectedValue, setSelectedValue] = React.useState(timeLimit[0]);
 
   const handleClose = (value) => {
+    const timeMap = {
+      "24 hours": 24 * 60 * 60 * 1000,
+      "7 days": 7 * 24 * 60 * 60 * 1000,
+      "30 days": 30 * 24 * 60 * 60 * 1000,
+    };
+
     setOpen(false);
     if (value !== "addAccount") {
       setSelectedValue(value);
+      const timeCalculated = timeMap[selectedValue];
       // Dispatch action to add pin to the message
-      addPinToMessage(item, selectedValue);
+      addPinToMessage(item, timeCalculated);
     }
   };
   useEffect(() => {
-    SocketListener("pin_added_to_message", (data) => {
+    SocketListener(SOCKET.REQUEST.PIN_ADDED, (data) => {
       // Dispatch action to update Redux state
       if (data.data.isPinned) {
         dispatch({

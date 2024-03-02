@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-// import ReactImageVideoLightbox from "react-image-video-lightbox";
+import ReactImageVideoLightbox from "react-image-video-lightbox";
 
 export default function ImageVideoModal({ data, startImgID, showResourceCount = true, onCloseImageHandler }) {
 
@@ -17,11 +17,11 @@ export default function ImageVideoModal({ data, startImgID, showResourceCount = 
 
     return (
         <div className="modal modal-lg-fullscreen fade show d-block task-image-gallery" id="imageGallery" tabIndex={-1} role="dialog" aria-labelledby="dropZoneLabel" aria-modal="true">
-            {/* <ReactImageVideoLightbox
+            <ReactImageVideoLightbox
                 data={ImageVideoData}
                 startIndex={startIndex}
                 showResourceCount={showResourceCount}
                 onCloseCallback={onCloseImageHandler}
-            /> */}
+            />
         </div>)
 }

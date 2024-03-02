@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { Tooltip, useMediaQuery } from "@mui/material";
 import {
   addAnnouncement,
@@ -31,6 +32,8 @@ import { getImageURL } from "redux/common";
 import { SocketEmiter, SocketListener } from "utils/wssConnection/Socket";
 import designationService from "../../../services/APIs/services/designationService";
 import { CHAT_CONST } from "redux/constants/chatConstants";
+import { GridCloseIcon } from "@mui/x-data-grid-pro";
+import { Divider } from "antd";
 const AnnouncementComponent = () => {
   const isMobile = useMediaQuery("(max-width:1200px)");
   const dispatch = useDispatch();
@@ -55,7 +58,6 @@ const AnnouncementComponent = () => {
     setOpenModal(true);
   };
   useEffect(() => {
-    console.log("----====??>>", storedAnnouncements);
     dispatch({ type: CHAT_CONST.DELETE_ACTIVE_CHAT });
   }, []);
   const handleCloseModal = () => {
@@ -192,8 +194,8 @@ const AnnouncementComponent = () => {
 
   const styles = {
     paperContainer: {
-      backgroundImage: `url(${"https://i.postimg.cc/MTn0p3LJ/wa-bg-image.png"})`,
-      backgroundColor: "#c8c8c8",
+      // backgroundImage: `url(${"https://i.postimg.cc/MTn0p3LJ/wa-bg-image.png"})`,
+      backgroundColor: "#F9F9F9",
       padding: "20px",
       border: "1px solid #ccc",
       overflow: "scroll",
@@ -209,39 +211,65 @@ const AnnouncementComponent = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <Table
-        sx={{ backgroundColor: "#f0f2f5" }}
+        sx={{ backgroundColor: "#633CB8" }}
         stickyHeader
         aria-label="sticky table"
       >
-        {isMobile && (
+        {/* {isMobile && (
           <button style={{ margin: "10px" }} onClick={goBack}>
             <ArrowBackIcon />
           </button>
-        )}
+        )} */}
         <TableCell>
           <Grid
             container
             direction={{ xs: "column", lg: "row" }}
-            justifyContent="center"
+            justifyContent="space-between"
             alignItems="center"
           >
             <Typography
               variant="h5"
-              sx={{ marginBottom: { xs: "10px", lg: 0 } }}
+              sx={{ marginBottom: { xs: "10px", lg: 0 }, color: "white" }}
             >
               Announcements
             </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleModalOpen}
-              sx={{
-                marginTop: { xs: "10px", lg: 0 },
-                marginLeft: { lg: "10px" },
-              }}
-            >
-              <AddIcon />
-            </Button>
+            <Box sx={{ display: "flex", columnGap: "20px" }}>
+              <Button
+                variant="contained"
+                onClick={handleModalOpen}
+                sx={{
+                  backgroundColor: "white",
+                  color: "#633CB8",
+                  fontWeight: "bold",
+                  marginTop: { xs: "10px", lg: 0 },
+                  marginLeft: { lg: "10px" },
+                  fontSize: "13px",
+                  borderRadius: "38px",
+                  "&:hover": {
+                    backgroundColor: "#d5d5d5", // Set the hover background color to white
+                  },
+                  "&:focus": {
+                    outline: "none", // Remove the outline on focus
+                  },
+                }}
+              >
+                Add Announcements
+              </Button>
+
+              <Box
+                sx={{
+                  marginTop: { xs: "10px", lg: 0 },
+                  marginLeft: { lg: "10px" },
+                  display: "flex",
+                  alignItems: "center",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+                onClick={goBack}
+              >
+                <GridCloseIcon />
+              </Box>
+            </Box>
           </Grid>
         </TableCell>
       </Table>
@@ -291,38 +319,115 @@ const AnnouncementComponent = () => {
               overflowY: "auto", // Enable vertical scrolling if content exceeds the height
             }}
           >
-            <Typography variant="h6" gutterBottom>
-              Create Announcement
+            <Typography variant="h6" gutterBottom sx={{ color: "#633CB8" }}>
+              Add Announcement
             </Typography>
+            <div
+              style={{
+                backgroundColor: "#DDDDDD",
+                height: "1px",
+                width: "100%",
+                margin: "10px 0 10px 0",
+              }}
+            ></div>
             <form onSubmit={handleSubmit}>
-              <TextField
+              {/* <TextField
                 label="Announcement Title"
                 variant="outlined"
                 fullWidth
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 style={{ marginBottom: "10px" }}
+              /> */}
+              <label style={{ color: "#515151", fontWeight: "bold" }}>
+                Announcement Title
+              </label>
+              <input
+                placeholder="Announcement Title"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #9B9B9B",
+                  borderRadius: "10px",
+                }}
+                onChange={(e) => setTitle(e.target.value)}
               />
+              <label
+                style={{
+                  color: "#515151",
+                  fontWeight: "bold",
+                  marginTop: "10px",
+                }}
+              >
+                Description
+              </label>
               <TextField
-                label="Announcement Text"
+                placeholder="Description"
                 variant="outlined"
                 fullWidth
                 multiline
                 rows={3}
                 value={text}
                 onChange={handleTextChange}
-                style={{ marginBottom: "10px" }}
+                sx={{
+                  marginBottom: "10px",
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "black", // Change the border color to black when focused
+                    },
+                  },
+                  "& .MuiOutlinedInput-root:hover fieldset": {
+                    borderColor: "initial", // Remove the border color change on hover
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused": {
+                    outline: "none", // Remove the outline on focus
+                  },
+                }}
               />
-              <label htmlFor="fileInput" style={{ cursor: "pointer" }}>
-                <CloudUploadIcon />
+
+              <AttachFileIcon />
+              <label
+                style={{
+                  color: "#515151",
+                  fontWeight: "bold",
+                  marginTop: "10px",
+                }}
+              >
+                Add Attachment
+              </label>
+              <input
+                onChange={handleFileChange}
+                type="file"
+                placeholder="Attachment"
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px solid #9B9B9B",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  marginTop:"10px"
+                }}
+              />
+              {/* <label htmlFor="fileInput" style={{  }}>
                 <input
                   style={{ marginLeft: "5px" }}
                   type="file"
                   onChange={handleFileChange}
                 />
-              </label>
+              </label> */}
               <br />
+
+              <label
+                style={{
+                  color: "#515151",
+                  fontWeight: "bold",
+                  marginTop: "10px",
+                }}
+              >
+                Group
+              </label>
               <Autocomplete
+              sx={{marginTop:"10px"}}
                 multiple
                 limitTags={2}
                 id="multiple-limit-tags"
@@ -337,22 +442,34 @@ const AnnouncementComponent = () => {
                 )} // Filter selected options by IDs
                 onChange={handleGroupSelection}
               />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                style={{ marginTop: "10px" }}
-                ref={buttonRef}
-              >
-                Submit
-              </Button>
+              <Box sx={{ width: "100%", textAlign: "end", marginTop:"10px" }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  ref={buttonRef}
+                  sx={{
+                    marginTop: "10px",
+                    backgroundColor: "#633CB8",
+                    "&:hover": {
+                      backgroundColor: "#703be2",
+                    },
+                    "&:focus": {
+                      outline: "none",
+                    },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Box>
             </form>
           </div>
         </Modal>
-        <p>Total Announcements: {storedAnnouncements?.announcements?.length}</p>
+        <p style={{ fontWeight: "bold" }}>
+          Total Announcements: {storedAnnouncements?.announcements?.length}
+        </p>
         <div style={{ maxWidth: "50%", minWidth: "250px" }}>
           {(storedAnnouncements?.announcements ?? []).length === 0 ? (
-            <p>No announcements available.</p>
+            <p style={{ fontWeight: "bold" }}>No announcements available.</p>
           ) : (
             <div>
               {(storedAnnouncements?.announcements ?? []).map(
@@ -366,106 +483,45 @@ const AnnouncementComponent = () => {
                     <Card
                       key={index}
                       style={{
-                        backgroundColor: "#edf2f8",
+                        backgroundColor: "#FFFFFF",
                         marginTop: "5px",
                         borderRadius: "8px",
                         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
                       }}
                     >
-                      <CardHeader
-                        avatar={
-                          <Avatar
-                            aria-label="profile-picture"
-                            style={{ backgroundColor: "#44a675" }}
-                          >
-                            <img
-                              src={getImageURL(
-                                announcement?.creatorProfilePicture,
-                                "80x80"
-                              )}
-                              alt=""
-                              style={{ maxWidth: "100%", height: "auto" }}
-                            />
-                          </Avatar>
-                        }
-                        title={announcement.creatorName}
-                        subheader={announcementTime.toLocaleDateString(
-                          "en-US",
-                          {
-                            month: "2-digit",
-                            day: "2-digit",
-                            year: "2-digit",
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <CardHeader
+                          avatar={
+                            <Avatar
+                              aria-label="profile-picture"
+                              style={{ backgroundColor: "#44a675" }}
+                            >
+                              <img
+                                src={getImageURL(
+                                  announcement?.creatorProfilePicture,
+                                  "80x80"
+                                )}
+                                alt=""
+                                style={{ maxWidth: "100%", height: "auto" }}
+                              />
+                            </Avatar>
                           }
-                        )}
-                      />
-                      <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                          <span
-                            style={{
-                              color: "#999",
-                              fontStyle: "italic",
-                              opacity: 0.8,
-                            }}
-                          >
-                            Title:
-                          </span>
-                          <span style={{ color: "#333", fontSize: "1.3rem" }}>
-                            {announcement.title}
-                          </span>
-                        </Typography>
-                        <Typography>{announcement.message}</Typography>
-
-                        <div>
-                          {announcement.image && (
-                            <>
-                              {getFileExtension(announcement.image).startsWith(
-                                "mp4"
-                              ) ||
-                              getFileExtension(announcement.image).startsWith(
-                                "ogg"
-                              ) ? (
-                                <video
-                                  className="img-fluid rounded border"
-                                  controls
-                                  width="300"
-                                  height="300"
-                                  style={{ height: "20rem" }}
-                                >
-                                  <source
-                                    src={announcement.image}
-                                    type="video/mp4"
-                                  />
-                                  <source
-                                    src={announcement.image}
-                                    type="video/ogg"
-                                  />
-                                  Your browser does not support the video tag.
-                                </video>
-                              ) : getFileExtension(
-                                  announcement.image
-                                ).startsWith("jpg") ||
-                                getFileExtension(announcement.image).startsWith(
-                                  "png"
-                                ) ? (
-                                <img
-                                  className="img-fluid rounded border"
-                                  style={{ width: "300px" }}
-                                  src={announcement.image}
-                                  alt=""
-                                  controls
-                                  onClick={() =>
-                                    handleOpenModal(announcement.image)
-                                  }
-                                />
-                              ) : (
-                                <div className="preview-file-doc">
-                                  <span>{"Preview not available"}</span>
-                                </div>
-                              )}
-                            </>
+                          title={announcement.creatorName}
+                          subheader={announcementTime.toLocaleDateString(
+                            "en-US",
+                            {
+                              month: "2-digit",
+                              day: "2-digit",
+                              year: "2-digit",
+                            }
                           )}
-                        </div>
-
+                        />
                         <div>
                           {Object.keys(readBy).map((announcementId) => {
                             const readData = readBy[announcementId];
@@ -568,6 +624,73 @@ const AnnouncementComponent = () => {
                             }
                             return null;
                           })}
+                        </div>
+                      </Box>
+                      <CardContent>
+                        <Typography variant="h6" gutterBottom>
+                          <span
+                            style={{
+                              color: "#333",
+                              fontSize: "1.3rem",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {announcement.title}
+                          </span>
+                        </Typography>
+                        <Typography sx={{ marginBottom: "15px" }}>
+                          {announcement.message}
+                        </Typography>
+
+                        <div>
+                          {announcement.image && (
+                            <>
+                              {getFileExtension(announcement.image).startsWith(
+                                "mp4"
+                              ) ||
+                              getFileExtension(announcement.image).startsWith(
+                                "ogg"
+                              ) ? (
+                                <video
+                                  className="img-fluid rounded border"
+                                  controls
+                                  width="300"
+                                  height="300"
+                                  style={{ height: "20rem" }}
+                                >
+                                  <source
+                                    src={announcement.image}
+                                    type="video/mp4"
+                                  />
+                                  <source
+                                    src={announcement.image}
+                                    type="video/ogg"
+                                  />
+                                  Your browser does not support the video tag.
+                                </video>
+                              ) : getFileExtension(
+                                  announcement.image
+                                ).startsWith("jpg") ||
+                                getFileExtension(announcement.image).startsWith(
+                                  "png"
+                                ) ? (
+                                <img
+                                  className="img-fluid rounded border"
+                                  style={{ width: "300px" }}
+                                  src={announcement.image}
+                                  alt=""
+                                  controls
+                                  onClick={() =>
+                                    handleOpenModal(announcement.image)
+                                  }
+                                />
+                              ) : (
+                                <div className="preview-file-doc">
+                                  <span>{"Preview not available"}</span>
+                                </div>
+                              )}
+                            </>
+                          )}
                         </div>
                       </CardContent>
                     </Card>

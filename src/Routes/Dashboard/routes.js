@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import BoardList from "Routes/Dashboard/components/Chat";
 import UsersInfo from "Routes/Dashboard/components/Users";
 import UsersAttendanceLogs from "Routes/SuperAdmin/components/AttendanceLogs";
+import Nps from "./components/NPs";
 const SchedulePatient = lazy(() => import('Routes/Dashboard/components/SchedulePatient'));
 // const Calendar = lazy(() => import('Routes/Dashboard/components/Calendar'));
 
@@ -62,10 +63,18 @@ const dashboardRoutes = (user, isAdmin = false) => {
             // access: !user?.isProvider || isAdmin
         },
         {
+            id: "dashboard-tab-nps",
+            title: "Nurse Practitioner",
+            path: "nps",
+            element: <Nps />,
+            dest: "dashboard/nps",
+            access: !user?.isProvider || isAdmin
+        },
+        {
             id: "dashboard-tab-*",
             path: "*",
             element: <Navigate to="board" />,
-            dest: "dashboard/board",
+            dest: "dashboard/nps",
         },
     ]
 };

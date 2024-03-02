@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-// import ReactImageVideoLightbox from "react-image-video-lightbox";
+import ReactImageVideoLightbox from "react-image-video-lightbox";
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { DeleteIssuesAttachment } from 'redux/actions/IssuesAction';
 import { CONST } from 'utils/constants';
@@ -35,7 +35,7 @@ export const RequestSolution = ({ requestData }) => {
 
     if (isImageShow)
         return (<div className="modal modal-lg-fullscreen fade show d-block task-image-gallery" id="imageGallery" tabIndex={-1} role="dialog" aria-labelledby="dropZoneLabel" aria-modal="true">
-            {/* <ReactImageVideoLightbox
+            <ReactImageVideoLightbox
                 data={requestData.issuesAttachments
                     .filter((item) => ["image", "video"].includes(item.mediaType.split("/").shift()))
                     .map((item) => {
@@ -49,7 +49,7 @@ export const RequestSolution = ({ requestData }) => {
                     .findIndex((item) => item.id === imageId)}
                 showResourceCount={true}
                 onCloseCallback={onCloseImageHandler}
-            /> */}
+            />
         </div>);
 
     const solution_format = sanitizeHTMLText(solution, CONST.sanitize_message)

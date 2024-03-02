@@ -3,7 +3,7 @@ import { MuiTooltip } from "Components/components";
 import { ProfileStatusAvailable } from "Components/Dropdowns/ProfileStatusDD";
 import {
   BoxArrowLeft,
-  Question,
+  // Question,
   ThreeDotsVertical,
 } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
@@ -13,10 +13,10 @@ import { getImageURL, getProfileStatus, toggleTheme } from "redux/common";
 import { CHAT_MODELS } from "Routes/Chat/Models/models";
 import ProfilePicUpdate from "Routes/Chat/Models/ProfilePicUpdate";
 import { useClickAway } from "react-use";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { FindInPage } from "@mui/icons-material";
+// import { FindInPage } from "@mui/icons-material";
 
 export default function UserProfile({ clockOutHandler, isClockOut }) {
   const { name } = useSelector((state) => state.model);
@@ -33,31 +33,25 @@ export default function UserProfile({ clockOutHandler, isClockOut }) {
   const localStorageDescription = localStorageItem.description || "";
   const [help, setHelp] = useState(false);
   const [checkId, setCheckId] = useState(false);
-  const buttonRef = useRef(null);
+  // const buttonRef = useRef(null);
 
-  const clickHandler = (event) => {
-    setHelp(true);
-  };
+  // const clickHandler = (event) => {
+  //   setHelp(true);
+  // };
   // Load data from localStorage on component mount
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("data")) || [];
     setLocalStorageData(savedData);
-
-    // Log all data to the console
-    console.log("Data from localStorage:", savedData);
   }, []);
 
-  const clickHandlerId = () => {
-    setCheckId(true);
-  };
+  // const clickHandlerId = () => {
+  //   setCheckId(true);
+  // };
   useEffect(() => {
     const handleClick = (event) => {
-      const clickedElementId = event.target.id;
-      // console.log('checkId:', checkId);
-      // console.log('event.target:', event.target);
-      
-      // if (checkId && event.target !== buttonRef.current) {
-        console.log(`Clicked element ID: ${clickedElementId}`);
+      // const clickedElementId = event.target.id;
+      // // if (checkId && event.target !== buttonRef.current) {
+      //   console.log(`Clicked element ID: ${clickedElementId}`);
         setCheckId(false);
       // }
     };

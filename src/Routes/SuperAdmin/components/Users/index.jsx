@@ -217,8 +217,9 @@ export default function UsersTable() {
     }, [refetch]);
 
     const setInspectUser = useCallback((usr) => {
+        console.log("-=-=-=-=->>>",usersList?.rows ? usersList.rows : [])
         usr ? dispatch({ type: CHAT_CONST.SET_INSPECT_USER, payload: usr }) : showError("User is not available");
-    }, []);
+    }, [usersList]);
 
     const onChangeghostMode = useCallback((usr) => {
         if (getSuperAdminAccess(usr)) {
